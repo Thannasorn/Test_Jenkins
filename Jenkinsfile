@@ -8,12 +8,7 @@ pipeline {
         sh "yarn test"
       }
     }
-    stage("Build"){
-      steps{
-        sh "yarn"
-        sh "yarn build"
-      }
-    }
+    
     
   }
 }
