@@ -4,7 +4,6 @@ pipeline {
   stages {
     stage("Test"){
       steps {
-        sh "npm"
         sh "npm test"
       }
     }
