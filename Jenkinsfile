@@ -1,6 +1,10 @@
 pipeline {
+
   agent any
-  
+
+  environment {
+        NODE_IMAGE = 'latest'
+    }    
   stages {
     stage("test"){
       steps {
