@@ -1,23 +1,24 @@
 pipeline {
-  agent any
-  
-  stages {
-    stage("test"){
-      steps {
-        sh "yarn test"
-      }
-    }
-    stage("build"){
-      steps{
-        sh "yarn"
-        sh "yarn build"
-      }
-    }
-    stage("deploy") {
+    agent any
+   
+    stages {
+        stage('Test') {
             steps {
-                sh "sudo rm -rf /var/www/html/Jenkins_test"
-                sh "sudo cp -r ${WORKSPACE}/build/ /var/www/html/Jenkins_test/"
+                sh 'yarn'
+                sh 'yarn test'
             }
         }
-  }
+        stage('Build') {
+            steps {
+                sh 'yarn'
+                sh 'yarn build'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh "sudo rm -rf /var/www/html/jenkins_st"
+                sh "sudo cp -r ${WORKSPACE}/build/ /var/www/html/jenkins_st/"
+            }
+        }
+    }
 }
