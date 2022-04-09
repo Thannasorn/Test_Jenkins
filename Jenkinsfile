@@ -16,9 +16,9 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh "sudo rm -rf /var/www/html/jenkins_st"
-                sh "sudo cp -r ${WORKSPACE}/build/ /var/www/html/jenkins_st/"
+                sh "yarn global add firebase-tools --cache-folder node_modules"
+                sh "firebase deploy --token env.$FIREBASE_DEPLOY_KEY"
             }
-        }
+        } 
     }
 }
