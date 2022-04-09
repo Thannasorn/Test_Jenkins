@@ -1,9 +1,6 @@
 pipeline {
     agent any
-
-    environment {
-        FIREBASE_DEPLOY_KEY = '1//0g1S_YeNvFgFrCgYIARAAGBASNwF-L9Ir17Wji-Vg_HceUsmma26CVJE20xNpZWQuEgK_6-Fzdc9XJBp-rhmT3xGi3TInjX5dICY'
-    }    
+   
     stages {
         stage('Test') {
             steps {
@@ -19,9 +16,9 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh "yarn global add firebase-tools --cache-folder node_modules"
-                sh "firebase deploy --token ${env.FIREBASE_DEPLOY_KEY}"
+                sh "sudo rm -rf /var/www/html/jenkins_st"
+                sh "sudo cp -r ${WORKSPACE}/build/ /var/www/html/jenkins_st/"
             }
-        } 
+        }
     }
 }
